@@ -11,6 +11,13 @@ public class Screen extends JFrame {
     public Screen() {
         initComponents();
     }
+    private static Path dirname;
+    public static Path getDirname() {
+        return dirname;
+    }
+    public static void setDirname(Path dirname) {
+        Screen.dirname = dirname;
+    }
 
     private JTextField dir;
 
@@ -69,13 +76,13 @@ public class Screen extends JFrame {
     }
 
     private void generateActionPerformed() throws FileNotFoundException {
-        String zipFileName = Main.getDirname().toString() + ".mcpack";
+        String zipFileName = Screen.getDirname().toString() + ".mcpack";
         
         try (
                 ZipOutputStream zos = new ZipOutputStream(
                         new FileOutputStream(zipFileName))
         ) {
-            Files.walkFileTree(Main.getDirname(), new SimpleFileVisitor<>() {
+            Files.walkFileTree(Screen.getDirname(), new SimpleFileVisitor<>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) {
 
@@ -85,7 +92,7 @@ public class Screen extends JFrame {
 
                     try (FileInputStream fis = new FileInputStream(file.toFile())) {
 
-                        Path targetFile = Main.getDirname().relativize(file);
+                        Path targetFile = Screen.getDirname().relativize(file);
                         zos.putNextEntry(new ZipEntry(targetFile.toString()));
 
                         byte[] buffer = new byte[1024];
@@ -124,8 +131,8 @@ public class Screen extends JFrame {
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         File f = fc.getCurrentDirectory();
         Path source = Paths.get(f.getAbsolutePath());
-        Main.setDirname(source);
+        Screen.setDirname(source);
 
-        dir.setText(String.valueOf(Main.getDirname()));
+        dir.setText(String.valueOf(Screen.getDirname()));
     }
 }
