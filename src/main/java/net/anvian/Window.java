@@ -1,7 +1,6 @@
 package net.anvian;
 
 import javax.swing.*;
-import java.io.FileNotFoundException;
 
 public class Window extends JFrame {
     public static JTextField dir;
@@ -20,13 +19,7 @@ public class Window extends JFrame {
         search.addActionListener(env -> Actions.searchActionPerformed());
 
         generate.setText("Generar");
-        generate.addActionListener(evt -> {
-            try {
-                Actions.generateActionPerformed();
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        });
+        generate.addActionListener(evt -> Actions.generateActionPerformed());
 
         dir.setEditable(false);
         dir.setText("Ubicacion del archivo");

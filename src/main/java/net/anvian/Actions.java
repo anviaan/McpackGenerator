@@ -9,7 +9,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class Actions {
-    public static void generateActionPerformed() throws FileNotFoundException {
+    public static void generateActionPerformed() {
         String zipFileName = Dirname.getDirname().toString() + ".mcpack";
 
         try (
