@@ -1,6 +1,7 @@
 package net.anvian;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -119,6 +120,7 @@ public class Screen extends JFrame {
             });
 
             JOptionPane.showMessageDialog(null, "Done");
+            Desktop.getDesktop().open(dirname.toFile().getParentFile());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
