@@ -22,7 +22,7 @@ public class Window extends JFrame {
         generate.addActionListener(evt -> Actions.generateActionPerformed());
 
         dir.setEditable(false);
-        dir.setText("Ubicacion del archivo");
+        dir.setText("Ubicación del archivo");
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
