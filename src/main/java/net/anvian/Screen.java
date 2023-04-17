@@ -120,6 +120,7 @@ public class Screen extends JFrame {
             });
 
             JOptionPane.showMessageDialog(null, "Done");
+            //Open the previous directory
             Desktop.getDesktop().open(dirname.toFile().getParentFile());
 
         } catch (IOException e) {
