@@ -83,4 +83,9 @@ public class Actions {
             throw new RuntimeException(e);
         }
     }
+
+    public static void cleanActionPerformed() {
+        Dirname.setDirname(null);
+        Window.dir.setText("Ubicación del archivo");
+    }
 }
