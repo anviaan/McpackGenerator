@@ -17,6 +17,26 @@ public class Actions {
         }
     }
 
+    public static void searchActionPerformed() {
+        try {
+            Frame frame = new Frame();
+            FileDialog dialog = new FileDialog(frame, "Seleccione una carpeta");
+            dialog.setMode(FileDialog.LOAD);
+            dialog.setMultipleMode(false);
+            dialog.setVisible(true);
+
+            Path folderPath = Path.of(dialog.getDirectory());
+
+            Dirname.setDirname(folderPath);
+
+            Window.dir.setText(String.valueOf(Dirname.getDirname()));
+        }catch (NullPointerException ignored){}
+    }
+
+    public static void cleanActionPerformed(){
+
+    }
+
     public static void generateActionPerformed() {
         String zipFileName = Dirname.getDirname().toString() + ".mcpack";
 
@@ -65,21 +85,5 @@ public class Actions {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static void searchActionPerformed() {
-        try {
-            Frame frame = new Frame();
-            FileDialog dialog = new FileDialog(frame, "Seleccione una carpeta");
-            dialog.setMode(FileDialog.LOAD);
-            dialog.setMultipleMode(false);
-            dialog.setVisible(true);
-
-            Path folderPath = Path.of(dialog.getDirectory());
-
-            Dirname.setDirname(folderPath);
-
-            Window.dir.setText(String.valueOf(Dirname.getDirname()));
-        }catch (NullPointerException ignored){}
     }
 }
