@@ -33,10 +33,6 @@ public class Actions {
         }catch (NullPointerException ignored){}
     }
 
-    public static void cleanActionPerformed(){
-
-    }
-
     public static void generateActionPerformed() {
         String zipFileName = Dirname.getDirname().toString() + ".mcpack";
 
