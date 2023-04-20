@@ -20,12 +20,13 @@ public class Actions {
     public static void searchActionPerformed() {
         try {
             Frame frame = new Frame();
-            FileDialog dialog = new FileDialog(frame, "Seleccione una carpeta");
-            dialog.setMode(FileDialog.LOAD);
-            dialog.setMultipleMode(false);
-            dialog.setVisible(true);
+            FileDialog folderChooser = new FileDialog(frame, "Seleccione una carpeta");
+            folderChooser.setDirectory(System.getProperty("use.home"));
+            folderChooser.setMode(FileDialog.LOAD);
+            //folderChooser.setMultipleMode(false);
+            folderChooser.setVisible(true);
 
-            Path folderPath = Path.of(dialog.getDirectory());
+            Path folderPath = Path.of(folderChooser.getDirectory());
 
             Dirname.setDirname(folderPath);
 
