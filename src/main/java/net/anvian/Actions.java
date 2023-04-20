@@ -9,13 +9,20 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class Actions {
+    public static void verification(){
+        if (Dirname.getDirname() != null){
+            generateActionPerformed();
+        }else {
+            JOptionPane.showMessageDialog(null, "Seleccione una carpeta primero", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     public static void generateActionPerformed() {
         String zipFileName = Dirname.getDirname().toString() + ".mcpack";
 
         try (
-                ZipOutputStream zos = new ZipOutputStream(
-                        new FileOutputStream(zipFileName))
-        ) {
+                ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipFileName))
+        ){
             Files.walkFileTree(Dirname.getDirname(), new SimpleFileVisitor<>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) {
@@ -52,8 +59,7 @@ public class Actions {
                 }
             });
 
-            JOptionPane.showMessageDialog(null, "Done");
-            //Open the previous directory
+            JOptionPane.showMessageDialog(null, "El archivo se ha generado correctamente" , "Completado", JOptionPane.INFORMATION_MESSAGE);
             Desktop.getDesktop().open(Dirname.dirname.toFile().getParentFile());
 
         } catch (IOException e) {
@@ -62,13 +68,18 @@ public class Actions {
     }
 
     public static void searchActionPerformed() {
-        JFileChooser fc = new JFileChooser();
-        fc.showOpenDialog(null);
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        File f = fc.getCurrentDirectory();
-        Path source = Paths.get(f.getAbsolutePath());
-        Dirname.setDirname(source);
+        try {
+            Frame frame = new Frame();
+            FileDialog dialog = new FileDialog(frame, "Seleccione una carpeta");
+            dialog.setMode(FileDialog.LOAD);
+            dialog.setMultipleMode(false);
+            dialog.setVisible(true);
 
-        Window.dir.setText(String.valueOf(Dirname.getDirname()));
+            Path folderPath = Path.of(dialog.getDirectory());
+
+            Dirname.setDirname(folderPath);
+
+            Window.dir.setText(String.valueOf(Dirname.getDirname()));
+        }catch (NullPointerException ignored){}
     }
 }

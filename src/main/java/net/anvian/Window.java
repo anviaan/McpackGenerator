@@ -19,7 +19,7 @@ public class Window extends JFrame {
         search.addActionListener(env -> Actions.searchActionPerformed());
 
         generate.setText("Generar");
-        generate.addActionListener(evt -> Actions.generateActionPerformed());
+        generate.addActionListener(evt -> Actions.verification());
 
         dir.setEditable(false);
         dir.setText("Ubicación del archivo");
