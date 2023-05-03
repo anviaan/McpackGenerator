@@ -23,7 +23,6 @@ public class Actions {
             FileDialog folderChooser = new FileDialog(frame, "Seleccione una carpeta");
             folderChooser.setDirectory(System.getProperty("use.home"));
             folderChooser.setMode(FileDialog.LOAD);
-            //folderChooser.setMultipleMode(false);
             folderChooser.setVisible(true);
 
             Path folderPath = Path.of(folderChooser.getDirectory());
